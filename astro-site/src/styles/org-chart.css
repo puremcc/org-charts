@@ -181,6 +181,12 @@ body {
     color: white;
 }
 
+.member-card.employee {
+    background: #F0941C;
+    border: 2px solid #F0941C;
+    color: white;
+}
+
 .member-name {
     font-weight: bold;
     font-size: 0.9rem;
@@ -196,6 +202,11 @@ body {
 
 .member-card.contractor .member-name,
 .member-card.contractor .member-title {
+    color: white;
+}
+
+.member-card.employee .member-name,
+.member-card.employee .member-title {
     color: white;
 }
 

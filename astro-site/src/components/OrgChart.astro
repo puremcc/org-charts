@@ -10,10 +10,16 @@ interface Props {
 const { employees, hierarchy, teams } = Astro.props;
 
 const leadershipTeam = teams.get('Leadership') || [];
+// Separate Mike and Vista for hierarchical display
+const mike = leadershipTeam.find(e => e.name === 'Mike Duffy');
+const vista = leadershipTeam.find(e => e.name === 'Vista Le');
 const aiTeam = teams.get('AI Team') || [];
 const aiPortfolioTeam = teams.get('AI Portfolio') || [];
 const aiDevelopmentTeam = teams.get('AI Development') || [];
 const safetyInsightsTeam = teams.get('Safety Insights') || [];
+const substationTeam = teams.get('Substation Design Automation') || [];
+const estimationAgentTeam = teams.get('Estimation Agent') || [];
+const aiGovernanceTeam = teams.get('AI Governance') || [];
 const dataAnalyticsTeam = teams.get('Data & Analytics') || [];
 
 const dataTeams = new Map<string, Employee[]>();
@@ -28,28 +34,44 @@ function getEmployeeClass(employee: Employee): string {
   const classes = ['member-card'];
   if (employee.employmenttype === 'Contractor') {
     classes.push('contractor');
+  } else if (employee.employmenttype === 'Employee') {
+    classes.push('employee');
   }
   return classes.join(' ');
 }
 ---
 
 <div class="org-chart">
-  <!-- Leadership Level -->
-  <div class="leadership-level">
-    {leadershipTeam.map(leader => (
-      <div class="person-card leadership">
-        <div class="person-name">{leader.name}</div>
-        <div class="person-title">{leader.title}</div>
+  <!-- Mike Duffy Level -->
+  {mike && (
+    <>
+      <div class="leadership-level">
+        <div class="person-card leadership">
+          <div class="person-name">{mike.name}</div>
+          <div class="person-title">{mike.title}</div>
+        </div>
       </div>
-    ))}
-  </div>
+      <div class="connector"></div>
+    </>
+  )}
 
-  {leadershipTeam.length > 0 && <div class="connector"></div>}
+  <!-- Vista Le Level -->
+  {vista && (
+    <>
+      <div class="leadership-level">
+        <div class="person-card leadership">
+          <div class="person-name">{vista.name}</div>
+          <div class="person-title">{vista.title}</div>
+        </div>
+      </div>
+      <div class="connector"></div>
+    </>
+  )}
 
   <!-- Main Teams Container -->
   <div class="main-teams">
     <!-- AI Team Section -->
-    {(aiTeam.length > 0 || aiPortfolioTeam.length > 0 || aiDevelopmentTeam.length > 0 || safetyInsightsTeam.length > 0) && (
+    {(aiTeam.length > 0 || aiPortfolioTeam.length > 0 || aiDevelopmentTeam.length > 0 || safetyInsightsTeam.length > 0 || substationTeam.length > 0 || estimationAgentTeam.length > 0 || aiGovernanceTeam.length > 0) && (
       <div class="team-container">
         <div class="team-header">AI Team</div>
         
@@ -102,6 +124,51 @@ function getEmployeeClass(employee: Employee): string {
               <div class="sub-team-header">Safety Insights</div>
               <div class="team-members">
                 {safetyInsightsTeam.map(member => (
+                  <div class={getEmployeeClass(member)}>
+                    <div class="member-name">{member.name}</div>
+                    <div class="member-title">{member.title}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- Substation Design Automation -->
+          {substationTeam.length > 0 && (
+            <div class="sub-team">
+              <div class="sub-team-header">Substation Design Automation</div>
+              <div class="team-members">
+                {substationTeam.map(member => (
+                  <div class={getEmployeeClass(member)}>
+                    <div class="member-name">{member.name}</div>
+                    <div class="member-title">{member.title}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- Estimation Agent -->
+          {estimationAgentTeam.length > 0 && (
+            <div class="sub-team">
+              <div class="sub-team-header">Estimation Agent</div>
+              <div class="team-members">
+                {estimationAgentTeam.map(member => (
+                  <div class={getEmployeeClass(member)}>
+                    <div class="member-name">{member.name}</div>
+                    <div class="member-title">{member.title}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- AI Governance -->
+          {aiGovernanceTeam.length > 0 && (
+            <div class="sub-team">
+              <div class="sub-team-header">AI Governance</div>
+              <div class="team-members">
+                {aiGovernanceTeam.map(member => (
                   <div class={getEmployeeClass(member)}>
                     <div class="member-name">{member.name}</div>
                     <div class="member-title">{member.title}</div>

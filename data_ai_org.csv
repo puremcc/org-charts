@@ -7,12 +7,12 @@ Alana Browne,BTP,Mike Duffy,Contractor,AI Portfolio
 Kennedy Blair,Business Analyst,Mike Duffy,Contractor,AI Portfolio
 Brian Cohn,Sr. AI Engineer,Mike Duffy,Contractor,AI Portfolio
 Fahad Ahmad,Principal AI Engineer,,Contractor,AI Team
-Mark Price,Sr. Project Manager,Mike Duffy,Contractor,AI Development
-Daniel Bruce,Sr. AI Strategist,Mike Duffy,Contractor,AI Development
-Ryan Henning,AI Engineer,Mike Duffy,Contractor,AI Development
-Analyse Gonzalez,AI Engineer,Mike Duffy,Contractor,AI Development
-Simon K,AI Engineer,Mike Duffy,Contractor,AI Development
-Emma Picharski,AI Strategist,Mike Duffy,Contractor,AI Development
+Mark Price,Sr. Project Manager,Mike Duffy,Contractor,Estimation Agent
+Daniel Bruce,Sr. AI Strategist,Mike Duffy,Contractor,Estimation Agent
+Ryan Henning,AI Engineer,Mike Duffy,Contractor,Estimation Agent
+Analyse Gonzalez,AI Engineer,Mike Duffy,Contractor,Estimation Agent
+Simon K,AI Engineer,Mike Duffy,Contractor,Estimation Agent
+Emma Picharski,AI Strategist,Mike Duffy,Contractor,AI Governance
 Amar K,Data Analyst,Scott Kerfoot,Contractor,Spectrum
 Thillai M,Data Analyst,Scott Kerfoot,Contractor,Spectrum
 Ashok K,Data Analyst,Scott Kerfoot,Contractor,JDE
@@ -32,3 +32,9 @@ Fred M,Platform Engineer,Scott Kerfoot,Contractor,Platform
 Sweetha M,Platform Engineer,Scott Kerfoot,Contractor,Platform
 Adam Cornelius,Project Manager,Mike Duffy,Contractor,Safety Insights
 Tino Nguyen,Data Scientist,Adam Cornelius,Contractor,Safety Insights
+TBD PM,Project Manager,Mike Duffy,Contractor,Substation Design Automation
+TBD Data Scientist,Sr. Data Scientist,Mike Duffy,Contractor,Substation Design Automation
+TBD Architect,App Architect,Mike Duffy,Contractor,Substation Design Automation
+TBD Engineer,Software Engineer,Mike Duffy,Contractor,Substation Design Automation
+TBD ProServe,App Architect,Mark Price,Contractor,Estimation Agent
+TBD ProServe,MLE,Mark Price,Contractor,Estimation Agent
