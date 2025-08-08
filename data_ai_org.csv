@@ -1,0 +1,34 @@
+Name,Title,Manager,Employment Type,Team
+Mike Duffy,Director of Data & AI,,Employee,Leadership
+Vista Le,Program Manager Data & AI,Mike Duffy,Employee,Leadership
+Scott Kerfoot,Data & Analytics Program Manager,Mike Duffy,Contractor,Data & Analytics
+Christian Buechel,Sr. Project Manager,Mike Duffy,Contractor,AI Portfolio
+Alana Browne,BTP,Mike Duffy,Contractor,AI Portfolio
+Kennedy Blair,Business Analyst,Mike Duffy,Contractor,AI Portfolio
+Brian Cohn,Sr. AI Engineer,Mike Duffy,Contractor,AI Portfolio
+Fahad Ahmad,Principal AI Engineer,,Contractor,AI Team
+Mark Price,Sr. Project Manager,Mike Duffy,Contractor,AI Development
+Daniel Bruce,Sr. AI Strategist,Mike Duffy,Contractor,AI Development
+Ryan Henning,AI Engineer,Mike Duffy,Contractor,AI Development
+Analyse Gonzalez,AI Engineer,Mike Duffy,Contractor,AI Development
+Simon K,AI Engineer,Mike Duffy,Contractor,AI Development
+Emma Picharski,AI Strategist,Mike Duffy,Contractor,AI Development
+Amar K,Data Analyst,Scott Kerfoot,Contractor,Spectrum
+Thillai M,Data Analyst,Scott Kerfoot,Contractor,Spectrum
+Ashok K,Data Analyst,Scott Kerfoot,Contractor,JDE
+Goparna N,Data Analyst,Scott Kerfoot,Contractor,JDE
+Divakar S,Data Analyst,Scott Kerfoot,Contractor,JDE
+Matt T,Data Analyst,Scott Kerfoot,Employee,FleetIQ
+Quantiphi,Vendor Partner,Scott Kerfoot,Contractor,FleetIQ
+Jake J,Data Analyst,Scott Kerfoot,Employee,PeopleIQ
+Rithika S,Data Analyst,Scott Kerfoot,Contractor,PeopleIQ
+Latrice J,Data Analyst,Scott Kerfoot,Employee,OneStream
+Krishnan R,Data Analyst,Scott Kerfoot,Contractor,OneStream
+Venkatesh S,Data Analyst,Scott Kerfoot,Contractor,General Data Products
+Midhun A,Data Analyst,Scott Kerfoot,Contractor,General Data Products
+Rajesh,Deployment Specialist,Scott Kerfoot,Contractor,Deployment & Change Mgmt
+Sven D,Change Management,Scott Kerfoot,Contractor,Deployment & Change Mgmt
+Fred M,Platform Engineer,Scott Kerfoot,Contractor,Platform
+Sweetha M,Platform Engineer,Scott Kerfoot,Contractor,Platform
+Adam Cornelius,Project Manager,Mike Duffy,Contractor,Safety Insights
+Tino Nguyen,Data Scientist,Adam Cornelius,Contractor,Safety Insights

@@ -1,0 +1,674 @@
+        .sub-sub-team {
+            background: white;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 2px solid #DAD9D9;
+            box-shadow: 0 2px 4px rgba(34, 31, 31, 0.05);
+        }
+
+        .sub-sub-team-header {
+            font-weight: bold;
+            color: #221F1F;
+            margin-bottom: 12px;
+            text-align: center;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            line-height: 1.3;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #DAD9D9;
+        }
+
+        .sub-sub-team .team-members {
+            gap: 8px;
+        }<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data & AI Organization Chart</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Proxima Nova', Arial, sans-serif;
+            background: linear-gradient(135deg, #F4F4F4 0%, #DAD9D9 100%);
+            padding: 20px;
+            min-height: 100vh;
+            color: #221F1F;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-family: 'Alternate Gothic Extra Condensed ATF', Arial, sans-serif;
+            color: #CD0A1B;
+            font-size: 3rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #575454;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        .org-chart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .leadership-level {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 10px;
+        }
+
+        .person-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(34, 31, 31, 0.1);
+            text-align: center;
+            min-width: 200px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .person-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(34, 31, 31, 0.2);
+        }
+
+        .leadership {
+            background: white;
+            border: 3px solid #CD0A1B;
+        }
+
+        .employee {
+            background: #F0941C;
+            border: 2px solid #F0941C;
+            color: white;
+        }
+
+        .contractor {
+            background: #575454;
+            border: 2px solid #575454;
+            color: white;
+        }
+
+        .person-name {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: #221F1F;
+        }
+
+        .person-title {
+            color: #575454;
+            font-size: 0.9rem;
+            font-weight: 300;
+            line-height: 1.3;
+        }
+
+        .employee .person-name,
+        .employee .person-title {
+            color: white;
+        }
+
+        .contractor .person-name,
+        .contractor .person-title {
+            color: white;
+        }
+
+        .main-teams {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .team-container {
+            background: white;
+            border: 3px solid #CD0A1B;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 6px 12px rgba(34, 31, 31, 0.15);
+            flex: 1;
+            min-width: 400px;
+            max-width: 600px;
+        }
+
+        .team-header {
+            text-align: center;
+            font-family: 'Alternate Gothic Extra Condensed ATF', Arial, sans-serif;
+            font-weight: 400;
+            font-size: 1.5rem;
+            color: #CD0A1B;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #CD0A1B;
+        }
+
+        .sub-teams {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sub-team {
+            background: #F4F4F4;
+            border-radius: 6px;
+            padding: 15px;
+            border: 2px solid #F0941C;
+        }
+
+        .sub-team-header {
+            font-weight: bold;
+            color: #F0941C;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .team-members {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .member-card {
+            background: white;
+            border-radius: 6px;
+            padding: 12px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(34, 31, 31, 0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .member-card:hover {
+            transform: scale(1.05);
+        }
+
+        .member-name {
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+            color: #221F1F;
+        }
+
+        .member-title {
+            font-size: 0.8rem;
+            color: #575454;
+            font-weight: 300;
+        }
+
+        .member-card.employee {
+            background: #F0941C;
+            color: white;
+        }
+
+        .member-card.contractor {
+            background: #575454;
+            color: white;
+        }
+
+        .member-card.employee .member-name,
+        .member-card.employee .member-title {
+            color: white;
+        }
+
+        .member-card.contractor .member-name,
+        .member-card.contractor .member-title {
+            color: white;
+        }
+
+        .connector {
+            width: 3px;
+            height: 15px;
+            background: #575454;
+            margin: 0 auto;
+        }
+
+        .stats {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+            box-shadow: 0 4px 8px rgba(34, 31, 31, 0.1);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 2px solid #F0941C;
+        }
+
+        .stats h3 {
+            font-family: 'Alternate Gothic Extra Condensed ATF', Arial, sans-serif;
+            color: #CD0A1B;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 400;
+        }
+
+        .stats-container {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .stat-row {
+            display: flex;
+            gap: 30px;
+            flex: 1;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px 20px;
+            background: #F4F4F4;
+            border-radius: 6px;
+            flex: 1;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #CD0A1B;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #575454;
+            font-weight: 300;
+        }
+
+        .chart-container {
+            width: 200px;
+            height: 200px;
+            position: relative;
+        }
+
+        .pie-chart {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: conic-gradient(
+                #CD0A1B 0deg 43.2deg,
+                #F0941C 43.2deg 360deg
+            );
+            position: relative;
+        }
+
+        .chart-legend {
+            margin-top: 15px;
+            font-size: 0.8rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+            white-space: nowrap;
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+            margin-right: 8px;
+        }
+
+        .legend-red {
+            background: #CD0A1B;
+        }
+
+        .legend-orange {
+            background: #F0941C;
+        }
+
+        .chart-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #221F1F;
+            font-size: 0.9rem;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        @media (max-width: 768px) {
+            .main-teams {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .leadership-level {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .team-container {
+                min-width: 300px;
+            }
+
+            .stats-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .stat-row {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .chart-container {
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Data & AI Organization</h1>
+        <p>Quanta Services - Strategic Technology Leadership</p>
+    </div>
+
+    <div class="org-chart">
+        <!-- Leadership Level -->
+        <div class="leadership-level">
+            <div class="person-card leadership">
+                <div class="person-name">Mike Duffy</div>
+                <div class="person-title">Director of Data & AI</div>
+            </div>
+        </div>
+
+        <div class="connector"></div>
+
+        <!-- Vista Level -->
+        <div class="leadership-level">
+            <div class="person-card leadership">
+                <div class="person-name">Vista Le</div>
+                <div class="person-title">Program Manager<br/>Data & AI</div>
+            </div>
+        </div>
+
+        <div class="connector"></div>
+
+        <!-- Main Teams -->
+        <div class="main-teams">
+            <!-- AI Team Container -->
+            <div class="team-container">
+                <div class="team-header">AI Team</div>
+                <div class="sub-teams">
+                    <div class="sub-team">
+                        <div class="sub-team-header">AI Portfolio Team</div>
+                        <div class="team-members">
+                            <div class="member-card contractor">
+                                <div class="member-name">Christian Buechel</div>
+                                <div class="member-title">Sr. Project Manager</div>
+                            </div>
+                            <div class="member-card contractor">
+                                <div class="member-name">Alana Browne</div>
+                                <div class="member-title">BTP</div>
+                            </div>
+                            <div class="member-card contractor">
+                                <div class="member-name">Kennedy Blair</div>
+                                <div class="member-title">Business Analyst</div>
+                            </div>
+                            <div class="member-card contractor">
+                                <div class="member-name">Brian Cohn</div>
+                                <div class="member-title">Sr. AI Engineer</div>
+                            </div>
+                            <div class="member-card contractor">
+                                <div class="member-name">Fahad Ahmad</div>
+                                <div class="member-title">Principal AI Engineer</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sub-team">
+                        <div class="sub-team-header">AI Development Team</div>
+                        <div class="team-members">
+                            <div class="member-card contractor">
+                                <div class="member-name">Mark Price</div>
+                                <div class="member-title">Sr. Project Manager</div>
+                            </div>
+                            <div class="member-card contractor">
+                                <div class="member-name">Daniel Bruce</div>
+                                <div class="member-title">Sr. AI Strategist</div>
+                            </div>
+                            <div class="member-card contractor">
+                                <div class="member-name">Ryan Henning</div>
+                                <div class="member-title">AI Engineer</div>
+                            </div>
+                            <div class="member-card contractor">
+                                <div class="member-name">Analyse Gonzalez</div>
+                                <div class="member-title">AI Engineer</div>
+                            </div>
+                            <div class="member-card contractor">
+                                <div class="member-name">Simon K</div>
+                                <div class="member-title">AI Engineer</div>
+                            </div>
+                            <div class="member-card contractor">
+                                <div class="member-name">Emma Picharski</div>
+                                <div class="member-title">AI Strategist</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data & Analytics Team Container -->
+            <div class="team-container">
+                <div class="team-header">Data & Analytics Team</div>
+                <div class="sub-teams">
+                    <div class="sub-team">
+                        <div class="sub-team-header">Program Manager</div>
+                        <div class="team-members">
+                            <div class="member-card contractor">
+                                <div class="member-name">Scott Kerfoot</div>
+                                <div class="member-title">Data & Analytics<br/>Program Manager</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sub-team">
+                        <div class="sub-team-header">Product Teams</div>
+                        
+                        <div class="sub-sub-team">
+                            <div class="sub-sub-team-header">Spectrum Team</div>
+                            <div class="team-members">
+                                <div class="member-card contractor">
+                                    <div class="member-name">Amar K</div>
+                                    <div class="member-title">Data Analyst</div>
+                                </div>
+                                <div class="member-card contractor">
+                                    <div class="member-name">Thillai M</div>
+                                    <div class="member-title">Data Analyst</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-sub-team">
+                            <div class="sub-sub-team-header">JDE Team</div>
+                            <div class="team-members">
+                                <div class="member-card contractor">
+                                    <div class="member-name">Ashok K</div>
+                                    <div class="member-title">Data Analyst</div>
+                                </div>
+                                <div class="member-card contractor">
+                                    <div class="member-name">Goparna N</div>
+                                    <div class="member-title">Data Analyst</div>
+                                </div>
+                                <div class="member-card contractor">
+                                    <div class="member-name">Divakar S</div>
+                                    <div class="member-title">Data Analyst</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-sub-team">
+                            <div class="sub-sub-team-header">FleetIQ Team</div>
+                            <div class="team-members">
+                                <div class="member-card employee">
+                                    <div class="member-name">Matt T</div>
+                                    <div class="member-title">Data Analyst</div>
+                                </div>
+                                <div class="member-card contractor">
+                                    <div class="member-name">Quantiphi</div>
+                                    <div class="member-title">Vendor Partner</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-sub-team">
+                            <div class="sub-sub-team-header">PeopleIQ Team</div>
+                            <div class="team-members">
+                                <div class="member-card employee">
+                                    <div class="member-name">Jake J</div>
+                                    <div class="member-title">Data Analyst</div>
+                                </div>
+                                <div class="member-card contractor">
+                                    <div class="member-name">Rithika S</div>
+                                    <div class="member-title">Data Analyst</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-sub-team">
+                            <div class="sub-sub-team-header">OneStream Team</div>
+                            <div class="team-members">
+                                <div class="member-card employee">
+                                    <div class="member-name">Latrice J</div>
+                                    <div class="member-title">Data Analyst</div>
+                                </div>
+                                <div class="member-card contractor">
+                                    <div class="member-name">Krishnan R</div>
+                                    <div class="member-title">Data Analyst</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-sub-team">
+                            <div class="sub-sub-team-header">General Data Products Team</div>
+                            <div class="team-members">
+                                <div class="member-card contractor">
+                                    <div class="member-name">Venkatesh S</div>
+                                    <div class="member-title">Data Analyst</div>
+                                </div>
+                                <div class="member-card contractor">
+                                    <div class="member-name">Midhun A</div>
+                                    <div class="member-title">Data Analyst</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-sub-team">
+                            <div class="sub-sub-team-header">Deployment & Change Mgmt Team</div>
+                            <div class="team-members">
+                                <div class="member-card contractor">
+                                    <div class="member-name">Rajesh</div>
+                                    <div class="member-title">Deployment Specialist</div>
+                                </div>
+                                <div class="member-card contractor">
+                                    <div class="member-name">Sven D</div>
+                                    <div class="member-title">Change Management</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sub-sub-team">
+                            <div class="sub-sub-team-header">Platform Team</div>
+                            <div class="team-members">
+                                <div class="member-card contractor">
+                                    <div class="member-name">Fred M</div>
+                                    <div class="member-title">Platform Engineer</div>
+                                </div>
+                                <div class="member-card contractor">
+                                    <div class="member-name">Sweetha M</div>
+                                    <div class="member-title">Platform Engineer</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics -->
+        <div class="stats">
+            <h3>Team Composition</h3>
+            <div class="stats-container">
+                <div class="stat-row">
+                    <div class="stat-item">
+                        <div class="stat-number">32</div>
+                        <div class="stat-label">Total Members</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Full-Time (12.5%)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">28</div>
+                        <div class="stat-label">Contractors (87.5%)</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">10</div>
+                        <div class="stat-label">Product Teams</div>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <div class="pie-chart">
+                        <div class="chart-center">
+                            32<br/>TOTAL
+                        </div>
+                    </div>
+                    <div class="chart-legend">
+                        <div class="legend-item">
+                            <div class="legend-color legend-red"></div>
+                            <span>Full-Time (12.5%)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color legend-orange"></div>
+                            <span>Contractors (87.5%)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

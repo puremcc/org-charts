@@ -1,0 +1,151 @@
+---
+import type { Employee, TeamMember } from '../lib/csvReader';
+
+interface Props {
+  employees: Employee[];
+  hierarchy: TeamMember[];
+  teams: Map<string, Employee[]>;
+}
+
+const { employees, hierarchy, teams } = Astro.props;
+
+const leadershipTeam = teams.get('Leadership') || [];
+const aiTeam = teams.get('AI Team') || [];
+const aiPortfolioTeam = teams.get('AI Portfolio') || [];
+const aiDevelopmentTeam = teams.get('AI Development') || [];
+const safetyInsightsTeam = teams.get('Safety Insights') || [];
+const dataAnalyticsTeam = teams.get('Data & Analytics') || [];
+
+const dataTeams = new Map<string, Employee[]>();
+['Spectrum', 'JDE', 'FleetIQ', 'PeopleIQ', 'OneStream', 'General Data Products', 'Deployment & Change Mgmt', 'Platform'].forEach(teamName => {
+  const team = teams.get(teamName);
+  if (team && team.length > 0) {
+    dataTeams.set(teamName, team);
+  }
+});
+
+function getEmployeeClass(employee: Employee): string {
+  const classes = ['member-card'];
+  if (employee.employmenttype === 'Contractor') {
+    classes.push('contractor');
+  }
+  return classes.join(' ');
+}
+---
+
+<div class="org-chart">
+  <!-- Leadership Level -->
+  <div class="leadership-level">
+    {leadershipTeam.map(leader => (
+      <div class="person-card leadership">
+        <div class="person-name">{leader.name}</div>
+        <div class="person-title">{leader.title}</div>
+      </div>
+    ))}
+  </div>
+
+  {leadershipTeam.length > 0 && <div class="connector"></div>}
+
+  <!-- Main Teams Container -->
+  <div class="main-teams">
+    <!-- AI Team Section -->
+    {(aiTeam.length > 0 || aiPortfolioTeam.length > 0 || aiDevelopmentTeam.length > 0 || safetyInsightsTeam.length > 0) && (
+      <div class="team-container">
+        <div class="team-header">AI Team</div>
+        
+        <!-- Top-level AI Team members -->
+        {aiTeam.length > 0 && (
+          <div class="team-members">
+            {aiTeam.map(member => (
+              <div class={getEmployeeClass(member)}>
+                <div class="member-name">{member.name}</div>
+                <div class="member-title">{member.title}</div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <div class="sub-teams">
+          <!-- AI Portfolio -->
+          {aiPortfolioTeam.length > 0 && (
+            <div class="sub-team">
+              <div class="sub-team-header">AI Portfolio</div>
+              <div class="team-members">
+                {aiPortfolioTeam.map(member => (
+                  <div class={getEmployeeClass(member)}>
+                    <div class="member-name">{member.name}</div>
+                    <div class="member-title">{member.title}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- AI Development -->
+          {aiDevelopmentTeam.length > 0 && (
+            <div class="sub-team">
+              <div class="sub-team-header">AI Development</div>
+              <div class="team-members">
+                {aiDevelopmentTeam.map(member => (
+                  <div class={getEmployeeClass(member)}>
+                    <div class="member-name">{member.name}</div>
+                    <div class="member-title">{member.title}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- Safety Insights -->
+          {safetyInsightsTeam.length > 0 && (
+            <div class="sub-team">
+              <div class="sub-team-header">Safety Insights</div>
+              <div class="team-members">
+                {safetyInsightsTeam.map(member => (
+                  <div class={getEmployeeClass(member)}>
+                    <div class="member-name">{member.name}</div>
+                    <div class="member-title">{member.title}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    )}
+
+    <!-- Data & Analytics Team Section -->
+    {dataAnalyticsTeam.length > 0 && (
+      <div class="team-container">
+        <div class="team-header">Data & Analytics</div>
+        
+        <!-- Main Data & Analytics team members -->
+        <div class="team-members">
+          {dataAnalyticsTeam.map(member => (
+            <div class={getEmployeeClass(member)}>
+              <div class="member-name">{member.name}</div>
+              <div class="member-title">{member.title}</div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Data Sub-teams -->
+        <div class="sub-teams">
+          {Array.from(dataTeams.entries()).map(([teamName, teamMembers]) => (
+            <div class="sub-team">
+              <div class="sub-team-header">{teamName}</div>
+              <div class="team-members">
+                {teamMembers.map(member => (
+                  <div class={getEmployeeClass(member)}>
+                    <div class="member-name">{member.name}</div>
+                    <div class="member-title">{member.title}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+  </div>
+</div>

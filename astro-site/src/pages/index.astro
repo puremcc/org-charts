@@ -1,0 +1,34 @@
+---
+import { readCSV, buildHierarchy, groupByTeam } from '../lib/csvReader';
+import OrgChart from '../components/OrgChart.astro';
+import '../styles/org-chart.css';
+
+const employees = readCSV();
+const hierarchy = buildHierarchy(employees);
+const teams = groupByTeam(employees);
+
+const totalEmployees = employees.length;
+const totalContractors = employees.filter(e => e.employmenttype === 'Contractor').length;
+const totalFTE = employees.filter(e => e.employmenttype === 'Employee').length;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data & AI Organization Chart</title>
+</head>
+<body>
+    <div class="header">
+        <h1>Data & AI Organization</h1>
+        <div class="stats">
+            <span class="stat">Total: {totalEmployees}</span>
+            <span class="stat">FTE: {totalFTE}</span>
+            <span class="stat">Contractors: {totalContractors}</span>
+        </div>
+    </div>
+
+    <OrgChart employees={employees} hierarchy={hierarchy} teams={teams} />
+</body>
+</html>
