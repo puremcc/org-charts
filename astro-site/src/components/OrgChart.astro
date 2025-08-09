@@ -20,6 +20,7 @@ const safetyInsightsTeam = teams.get('Safety Insights') || [];
 const substationTeam = teams.get('Substation Design Automation') || [];
 const estimationAgentTeam = teams.get('Estimation Agent') || [];
 const aiGovernanceTeam = teams.get('AI Governance') || [];
+const aiTigerTeam = teams.get('AI Tiger Team') || [];
 const dataAnalyticsTeam = teams.get('Data & Analytics') || [];
 
 const dataTeams = new Map<string, Employee[]>();
@@ -36,6 +37,8 @@ function getEmployeeClass(employee: Employee): string {
     classes.push('contractor');
   } else if (employee.employmenttype === 'Employee') {
     classes.push('employee');
+  } else if (employee.employmenttype === 'Borrowed Resource') {
+    classes.push('borrowed');
   }
   return classes.join(' ');
 }
@@ -71,7 +74,7 @@ function getEmployeeClass(employee: Employee): string {
   <!-- Main Teams Container -->
   <div class="main-teams">
     <!-- AI Team Section -->
-    {(aiTeam.length > 0 || aiPortfolioTeam.length > 0 || aiDevelopmentTeam.length > 0 || safetyInsightsTeam.length > 0 || substationTeam.length > 0 || estimationAgentTeam.length > 0 || aiGovernanceTeam.length > 0) && (
+    {(aiTeam.length > 0 || aiPortfolioTeam.length > 0 || aiDevelopmentTeam.length > 0 || safetyInsightsTeam.length > 0 || substationTeam.length > 0 || estimationAgentTeam.length > 0 || aiGovernanceTeam.length > 0 || aiTigerTeam.length > 0) && (
       <div class="team-container">
         <div class="team-header">AI Team</div>
         
@@ -169,6 +172,21 @@ function getEmployeeClass(employee: Employee): string {
               <div class="sub-team-header">AI Governance</div>
               <div class="team-members">
                 {aiGovernanceTeam.map(member => (
+                  <div class={getEmployeeClass(member)}>
+                    <div class="member-name">{member.name}</div>
+                    <div class="member-title">{member.title}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- AI Tiger Team -->
+          {aiTigerTeam.length > 0 && (
+            <div class="sub-team">
+              <div class="sub-team-header">AI Tiger Team</div>
+              <div class="team-members">
+                {aiTigerTeam.map(member => (
                   <div class={getEmployeeClass(member)}>
                     <div class="member-name">{member.name}</div>
                     <div class="member-title">{member.title}</div>

@@ -4,8 +4,9 @@
 Convert a static HTML organization chart to a data-driven Astro website that reads from CSV data. The goal is to make the org chart easily maintainable by non-technical users through CSV editing.
 
 ## Current State
-- **data_ai_org_webpage.html**: Complete static HTML org chart with Quanta branding
-- **data_ai_org.csv**: Employee data in CSV format
+- **Astro site**: Fully functional dynamic org chart in `/astro-site`
+- **data_ai_org.csv**: Employee data in CSV format (single source of truth)
+- **Live site**: Built static files in `/dist` directory
 
 ## Target Architecture
 **Technology Stack:**
@@ -18,8 +19,11 @@ Convert a static HTML organization chart to a data-driven Astro website that rea
 
 ### 1. Data Structure
 - Read from `data_ai_org.csv` file
-- CSV columns: `name`, `title`, `employmentType`, `team`, `subTeam`, `reportsTo`, `level`
-- Employment types: `employee` (orange), `contractor` (gray), `leadership` (red border)
+- CSV columns: `Name`, `Title`, `Manager`, `Employment Type`, `Team`
+- Employment types: 
+  - `Employee` (Bolt orange #F0941C background, white text)
+  - `Contractor` (gray #575454 background, white text)
+  - `Borrowed Resource` (light peach #FED7AA background, dashed border, "PARTIAL" label)
 
 ### 2. Visual Design
 - **Exact same styling** as current HTML version
@@ -30,14 +34,18 @@ Convert a static HTML organization chart to a data-driven Astro website that rea
 
 ### 3. Organization Structure
 ```
-Mike Duffy (Director) 
+Mike Duffy (Director)
   └── Vista Le (Program Manager)
       ├── AI Team
-      │   ├── AI Portfolio Team (5 people)
-      │   └── AI Development Team (6 people)
+      │   ├── AI Portfolio
+      │   ├── Safety Insights
+      │   ├── Substation Design Automation
+      │   ├── Estimation Agent
+      │   ├── AI Governance
+      │   └── AI Tiger Team (includes partial resources)
       └── Data & Analytics Team
           ├── Scott Kerfoot (Program Manager)
-          └── 8 Product Teams (Spectrum, JDE, FleetIQ, etc.)
+          └── 8 Product Teams (Spectrum, JDE, FleetIQ, PeopleIQ, OneStream, etc.)
 ```
 
 ### 4. Components to Create
@@ -49,10 +57,14 @@ Mike Duffy (Director)
 
 ### 5. Features
 - **Automatic team statistics** calculation from CSV data
-- **Color coding**: Leadership (red), Employees (orange), Contractors (gray)
-- **Pie chart**: Visual breakdown of employee vs contractor ratio
-- **Team grouping**: Automatic grouping by team/subTeam columns
-- **Hierarchical layout**: Proper reporting structure display
+- **Color coding**: 
+  - Leadership (red border)
+  - Employees/FTE (Bolt orange background)
+  - Contractors (gray background)
+  - Borrowed Resources (light peach with dashed border)
+- **Dynamic team grouping**: Automatic grouping by Team column
+- **Hierarchical layout**: Mike → Vista → Teams structure
+- **Special resource handling**: Visual distinction for partial/borrowed resources
 
 ## Development Steps
 
@@ -83,18 +95,25 @@ Mike Duffy (Director)
 4. Test with CSV data
 
 ## Success Criteria
-- [ ] Visually identical to current HTML version
-- [ ] Reads data from CSV file dynamically
-- [ ] Statistics auto-calculate from data
-- [ ] Easy to update by editing CSV
-- [ ] Responsive design works on mobile
-- [ ] All Quanta branding preserved
-- [ ] Fast loading performance
+- [x] Reads data from CSV file dynamically
+- [x] Statistics auto-calculate from data
+- [x] Easy to update by editing CSV
+- [x] Responsive design works on mobile
+- [x] All Quanta branding preserved
+- [x] Fast loading performance
+- [x] Support for multiple employment types (FTE, Contractor, Borrowed)
+- [x] Hierarchical display (Mike → Vista → Teams)
 
 ## Maintenance Workflow
 1. Update `data_ai_org.csv` with personnel changes
-2. Build/deploy Astro site
-3. Changes automatically reflected in org chart
+2. Run `npm run build` in the astro-site directory
+3. Deploy the `/dist` folder to your web server
+4. Changes automatically reflected in org chart
+
+## Quick Commands
+- **Development**: `npm run dev` (live preview with hot reload)
+- **Build**: `npm run build` (generate static files in `/dist`)
+- **Preview**: `npm run preview` (preview built site)
 
 ## Notes
 - Prioritize exact visual match to current design

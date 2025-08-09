@@ -116,8 +116,8 @@ body {
     padding: 25px;
     box-shadow: 0 6px 12px rgba(34, 31, 31, 0.15);
     flex: 1;
-    min-width: 400px;
-    max-width: 600px;
+    min-width: 500px;
+    max-width: 900px;
 }
 
 .team-header {
@@ -141,8 +141,8 @@ body {
 }
 
 .sub-teams {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
 }
 
@@ -187,6 +187,25 @@ body {
     color: white;
 }
 
+.member-card.borrowed {
+    background: #FED7AA;
+    border: 2px dashed #F0941C;
+    color: #221F1F;
+    position: relative;
+}
+
+.member-card.borrowed::after {
+    content: "Partial";
+    position: absolute;
+    top: 2px;
+    right: 4px;
+    font-size: 0.6rem;
+    color: #F0941C;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
 .member-name {
     font-weight: bold;
     font-size: 0.9rem;
@@ -210,6 +229,15 @@ body {
     color: white;
 }
 
+.member-card.borrowed .member-name {
+    color: #F0941C;
+    font-weight: bold;
+}
+
+.member-card.borrowed .member-title {
+    color: #575454;
+}
+
 @media (max-width: 768px) {
     .main-teams {
         flex-direction: column;
@@ -223,5 +251,9 @@ body {
     
     .team-container {
         min-width: 90%;
+    }
+    
+    .sub-teams {
+        grid-template-columns: 1fr;
     }
 }
