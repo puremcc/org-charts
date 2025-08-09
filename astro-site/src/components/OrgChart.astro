@@ -10,9 +10,9 @@ interface Props {
 const { employees, hierarchy, teams } = Astro.props;
 
 const leadershipTeam = teams.get('Leadership') || [];
-// Separate Mike and Vista for hierarchical display
-const mike = leadershipTeam.find(e => e.name === 'Mike Duffy');
-const vista = leadershipTeam.find(e => e.name === 'Vista Le');
+// Separate Director and Program Manager for hierarchical display
+const director = leadershipTeam.find(e => e.title.includes('Director'));
+const programManager = leadershipTeam.find(e => e.title === 'Program Manager Data & AI');
 const aiTeam = teams.get('AI Team') || [];
 const aiPortfolioTeam = teams.get('AI Portfolio') || [];
 const aiDevelopmentTeam = teams.get('AI Development') || [];
@@ -22,6 +22,18 @@ const estimationAgentTeam = teams.get('Estimation Agent') || [];
 const aiGovernanceTeam = teams.get('AI Governance') || [];
 const aiTigerTeam = teams.get('AI Tiger Team') || [];
 const dataAnalyticsTeam = teams.get('Data & Analytics') || [];
+
+// Separate Data & Analytics Program Manager and their direct reports
+const dataAnalyticsPM = dataAnalyticsTeam.find(e => e.title === 'Data & Analytics Program Manager');
+const dataAnalyticsDirectReports = dataAnalyticsTeam.filter(e => 
+  e.title !== 'Data & Analytics Program Manager' && 
+  (e.title === 'Technical Product Manager' || e.title === 'Data Compliance Analyst')
+);
+const otherDataAnalyticsMembers = dataAnalyticsTeam.filter(e => 
+  e.title !== 'Data & Analytics Program Manager' && 
+  e.title !== 'Technical Product Manager' && 
+  e.title !== 'Data Compliance Analyst'
+);
 
 const dataTeams = new Map<string, Employee[]>();
 ['Spectrum', 'JDE', 'FleetIQ', 'PeopleIQ', 'OneStream', 'General Data Products', 'Deployment & Change Mgmt', 'Platform'].forEach(teamName => {
@@ -45,26 +57,26 @@ function getEmployeeClass(employee: Employee): string {
 ---
 
 <div class="org-chart">
-  <!-- Mike Duffy Level -->
-  {mike && (
+  <!-- Director Level -->
+  {director && (
     <>
       <div class="leadership-level">
         <div class="person-card leadership">
-          <div class="person-name">{mike.name}</div>
-          <div class="person-title">{mike.title}</div>
+          <div class="person-name">{director.name}</div>
+          <div class="person-title">{director.title}</div>
         </div>
       </div>
       <div class="connector"></div>
     </>
   )}
 
-  <!-- Vista Le Level -->
-  {vista && (
+  <!-- Program Manager Level -->
+  {programManager && (
     <>
       <div class="leadership-level">
         <div class="person-card leadership">
-          <div class="person-name">{vista.name}</div>
-          <div class="person-title">{vista.title}</div>
+          <div class="person-name">{programManager.name}</div>
+          <div class="person-title">{programManager.title}</div>
         </div>
       </div>
       <div class="connector"></div>
@@ -204,15 +216,39 @@ function getEmployeeClass(employee: Employee): string {
       <div class="team-container">
         <div class="team-header">Data & Analytics</div>
         
-        <!-- Main Data & Analytics team members -->
-        <div class="team-members">
-          {dataAnalyticsTeam.map(member => (
-            <div class={getEmployeeClass(member)}>
-              <div class="member-name">{member.name}</div>
-              <div class="member-title">{member.title}</div>
+        <!-- Data & Analytics Program Manager -->
+        {dataAnalyticsPM && (
+          <div class="team-members">
+            <div class={getEmployeeClass(dataAnalyticsPM)}>
+              <div class="member-name">{dataAnalyticsPM.name}</div>
+              <div class="member-title">{dataAnalyticsPM.title}</div>
             </div>
-          ))}
-        </div>
+          </div>
+        )}
+        
+        <!-- Program Manager's Direct Reports -->
+        {dataAnalyticsDirectReports.length > 0 && (
+          <div class="team-members" style="margin-top: 10px;">
+            {dataAnalyticsDirectReports.map(member => (
+              <div class={getEmployeeClass(member)}>
+                <div class="member-name">{member.name}</div>
+                <div class="member-title">{member.title}</div>
+              </div>
+            ))}
+          </div>
+        )}
+        
+        <!-- Other Data & Analytics team members -->
+        {otherDataAnalyticsMembers.length > 0 && (
+          <div class="team-members" style="margin-top: 10px;">
+            {otherDataAnalyticsMembers.map(member => (
+              <div class={getEmployeeClass(member)}>
+                <div class="member-name">{member.name}</div>
+                <div class="member-title">{member.title}</div>
+              </div>
+            ))}
+          </div>
+        )}
 
         <!-- Data Sub-teams -->
         <div class="sub-teams">
